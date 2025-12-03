@@ -29,7 +29,7 @@ export const CategoryProductsSection = () => {
       {isLoading ? (
         <>
           {Array.from({ length: 3 }).map((_, i) => (
-            <section key={i}>
+            <section key={i} className="mb-10 md:mb-20">
               <SectionTitleSkeleton />
               <div className="w-full">
                 <CardLayout>
@@ -47,22 +47,20 @@ export const CategoryProductsSection = () => {
           const hasProducts =
             category?.products && category?.products?.data?.length > 0;
           return hasProducts ? (
-            <section key={category?.categoryId} className="mb-10 md:mb-20">
+            <section key={category?.categoryId}>
               <HomeSectionTitle
                 title={category?.name}
                 href={`/categories/${category?.categoryId}/${slugify(
                   category?.name
                 )}`}>
                 <CardLayout>
-                  <CardLayout>
-                    {category?.products &&
-                      category?.products?.data?.length > 0 &&
-                      category?.products?.data
-                        ?.slice(0, initialLength)
-                        ?.map((product) => (
-                          <ProductCard key={product?.id} product={product} />
-                        ))}
-                  </CardLayout>
+                  {category?.products &&
+                    category?.products?.data?.length > 0 &&
+                    category?.products?.data
+                      ?.slice(0, initialLength)
+                      ?.map((product) => (
+                        <ProductCard key={product?.id} product={product} />
+                      ))}
                 </CardLayout>
               </HomeSectionTitle>
             </section>
